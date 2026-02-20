@@ -1,128 +1,89 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Tech Inside — Portal de Tecnologia</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tech Inside — Notícias</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{overflow-x:hidden}
-img{max-width:100%;height:auto}
-:root{--accent:#f59e0b;--ink:#111;--paper:#fff;--muted:#777;--border:#e5e5e5;--bg2:#f5f5f5}
-body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink)}
-a{color:inherit;text-decoration:none}
-.ticker{background:var(--ink);color:#fff;padding:8px 0;font-size:.7rem;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:scroll 30s linear infinite}
-@keyframes scroll{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
-.header{max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--ink)}
-.logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-.nav{display:flex;gap:1.2rem;font-size:.8rem;font-weight:600}
-.search-box input{border:2px solid var(--border);border-radius:4px;padding:6px 12px;font-size:.8rem;font-family:inherit;outline:none;width:160px}
-.search-box input:focus{border-color:var(--accent)}
-.hero-section{max-width:1200px;margin:1.5rem auto;padding:0 2rem;display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem}
-.hero-main{position:relative;border-radius:8px;overflow:hidden;min-height:350px;cursor:pointer}
-.hero-main img{width:100%;height:100%;object-fit:cover;position:absolute}
-.hero-main .overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff}
-.hero-main .overlay h1{font-size:1.6rem;font-weight:800;line-height:1.25;margin-bottom:.5rem}
-.hero-main .overlay p{font-size:.8rem;opacity:.85}
-.hero-sidebar{display:flex;flex-direction:column;gap:.8rem}
-.hero-sidebar-item{display:flex;gap:.8rem;align-items:start;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
-.hero-sidebar-item img{width:80px;height:60px;object-fit:cover;border-radius:4px;flex-shrink:0}
-.hero-sidebar-item h3{font-size:.82rem;font-weight:700;line-height:1.3}
-.hero-sidebar-item span{font-size:.65rem;color:var(--accent);font-weight:700;display:block;margin-bottom:2px}
-.section-header{max-width:1200px;margin:2rem auto .8rem;padding:0 2rem;display:flex;align-items:center;gap:.5rem}
-.section-header h2{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.section-header::after{content:'';flex:1;height:2px;background:var(--border)}
-.grid{max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.card{border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:.2s;cursor:pointer}
-.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12)}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-body{padding:1rem}
-.card-body .tag{font-size:.65rem;font-weight:700;color:var(--accent);margin-bottom:.4rem;display:block}
-.card-body h3{font-size:.95rem;font-weight:700;line-height:1.3;margin-bottom:.4rem}
-.card-body p{font-size:.78rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-body .meta{font-size:.68rem;color:var(--muted);margin-top:.6rem}
-.mais-lidas{background:var(--bg2);padding:2rem 0;margin:2rem 0}
-.mais-lidas .inner{max-width:1200px;margin:0 auto;padding:0 2rem}
-.mais-lidas h2{font-size:.85rem;font-weight:800;text-transform:uppercase;margin-bottom:1rem}
-.mais-lidas-grid{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.5rem}
-.mais-lidas-item{min-width:250px;flex-shrink:0;display:flex;gap:.8rem;align-items:start}
-.mais-lidas-item .num{font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
-.mais-lidas-item h3{font-size:.82rem;font-weight:700;line-height:1.3}
-.footer{background:var(--ink);color:#fff;padding:3rem 2rem;margin-top:3rem}
-.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-.footer-inner h4{font-size:.75rem;font-weight:700;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:1px}
-.footer-inner a{display:block;font-size:.78rem;color:#aaa;margin-bottom:.4rem}
-.footer-bottom{max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid #333;font-size:.7rem;color:#666;text-align:center;margin-top:2rem}
-.article-view{max-width:720px;margin:2rem auto;padding:0 2rem;display:none}
-.article-view.active{display:block}
-.article-view .back{display:inline-block;font-size:.85rem;color:var(--accent);font-weight:600;cursor:pointer;margin-bottom:1.5rem}
-.article-view h1{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:.5rem}
-.article-view .meta{font-size:.8rem;color:var(--muted);margin-bottom:1.5rem}
-.article-view .cover{width:100%;border-radius:8px;margin-bottom:1.5rem}
-.article-view .body{font-size:1rem;line-height:1.8;color:#333}
-.article-view .body p{margin-bottom:1rem}
-.article-view .tags{margin-top:2rem;display:flex;gap:6px;flex-wrap:wrap}
-.article-view .tags span{font-size:.7rem;background:var(--bg2);padding:4px 10px;border-radius:4px;font-weight:600}
-.home-view{}
-.home-view.hidden{display:none}
+*{margin:0;padding:0;box-sizing:border-box}html,body{overflow-x:hidden}img{max-width:100%;height:auto}
+:root{--a:#0891b2;--ink:#e0e0e0;--p:#0a0a10;--m:#777;--b:#1a1a28;--c:#111119;--c2:#16161f}
+body{font-family:'Inter',sans-serif;background:var(--p);color:var(--ink)}a{color:inherit;text-decoration:none}
+.header{background:var(--c);border-bottom:1px solid var(--b)}
+.hi{max-width:1200px;margin:0 auto;padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.5rem;font-weight:800}.logo span{color:var(--a)}
+.tnav{background:var(--c2);border-bottom:1px solid var(--b)}
+.tnav-i{max-width:1200px;margin:0 auto;padding:.5rem 2rem;display:flex;gap:1.5rem;font-size:.75rem;color:var(--m);overflow-x:auto}
+.tnav-i a:hover{color:var(--a)}
+.si input{background:var(--c2);border:1px solid var(--b);color:var(--ink);border-radius:4px;padding:6px 12px;font-size:.78rem;font-family:inherit;outline:none;width:150px}
+.top-grid{max-width:1200px;margin:1.5rem auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:1.5rem}
+.col-list a{display:block;padding:.6rem 0;border-bottom:1px solid var(--b);font-size:.82rem;font-weight:500;line-height:1.35}
+.col-list a .tg{font-size:.6rem;color:var(--a);font-weight:700}
+.col-list h3{font-size:.85rem;font-weight:700;margin-bottom:.8rem;color:var(--a);text-transform:lowercase}
+.col-feat{position:relative;border-radius:10px;overflow:hidden;min-height:350px}
+.col-feat img{width:100%;height:100%;object-fit:cover;position:absolute}
+.col-feat .ov{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.col-feat .ov h2{font-size:1.5rem;font-weight:800;line-height:1.2}
+.col-feat .ov p{font-size:.78rem;opacity:.8;margin-top:.4rem}
+.st{max-width:1200px;margin:2.5rem auto 1rem;padding:0 2rem;font-size:.82rem;font-weight:700;text-transform:lowercase;color:var(--a);border-bottom:1px solid var(--b);padding-bottom:.5rem}
+.grid4{max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.gc{background:var(--c);border-radius:8px;overflow:hidden;transition:.2s}.gc:hover{transform:translateY(-2px)}
+.gc img{width:100%;height:140px;object-fit:cover}
+.gc .cb{padding:.8rem}.gc .cb h3{font-size:.82rem;font-weight:600;line-height:1.3}
+.gc .cb .mt{font-size:.65rem;color:var(--m);margin-top:.4rem}
+.grid5{max-width:1200px;margin:1rem auto;padding:0 2rem;display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}
+.g5c img{width:100%;height:100px;object-fit:cover;border-radius:6px;margin-bottom:.4rem}
+.g5c h4{font-size:.72rem;font-weight:600;line-height:1.3}
+.footer{border-top:1px solid var(--b);padding:2rem;margin-top:3rem;text-align:center;font-size:.7rem;color:var(--m)}
+.av{max-width:700px;margin:2rem auto;padding:0 2rem;display:none}.av.active{display:block}
+.av .back{display:inline-block;font-size:.85rem;color:var(--a);cursor:pointer;margin-bottom:1.5rem;font-weight:600}
+.av h1{font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:.5rem}
+.av .meta{font-size:.82rem;color:var(--m);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--b)}
+.av .cover{width:100%;border-radius:8px;margin-bottom:1.5rem}
+.av .body{font-size:1rem;line-height:1.85;color:#ccc}.av .body p{margin-bottom:1rem}
+.av .tags{margin-top:2rem;display:flex;gap:6px;flex-wrap:wrap}.av .tags span{font-size:.7rem;background:var(--c);padding:4px 10px;border-radius:4px}
+.hv{}.hv.hidden{display:none}
 @media(max-width:768px){
-.ticker{font-size:.6rem}
-.header{padding:.8rem 1rem;flex-wrap:wrap;gap:.5rem}
-.logo{font-size:1.2rem}
-.nav{display:none}
-.search-box input{width:100%}
-.hero-section{grid-template-columns:1fr;padding:0 1rem}
-.hero-main{min-height:250px}
-.hero-main .overlay h1{font-size:1.2rem}
-.hero-sidebar{display:none}
-.grid{grid-template-columns:1fr!important;padding:0 1rem}
-.footer-inner{grid-template-columns:1fr 1fr}
-.article-view{padding:0 1rem}
-.article-view h1{font-size:1.4rem}
-.mais-lidas .inner{padding:0 1rem}
+.hi{padding:.6rem 1rem;flex-wrap:wrap;gap:.5rem}.logo{font-size:1.2rem}.tnav-i{padding:.5rem 1rem}
+.si input{width:100%}.top-grid{grid-template-columns:1fr;padding:0 1rem}.col-list{display:none}
+.col-feat{min-height:250px}.col-feat .ov h2{font-size:1.2rem}
+.grid4{grid-template-columns:1fr 1fr;padding:0 1rem}.grid5{grid-template-columns:1fr 1fr;padding:0 1rem}
+.av{padding:0 1rem}.av h1{font-size:1.4rem}.st{padding:0 1rem;padding-bottom:.5rem}
 }
-</style>
-</head>
-<body>
-<div class="home-view" id="homeView">
-<div class="ticker"><div class="ticker-inner" id="ticker">⚡ Carregando últimas notícias...</div></div>
-<div class="header">
-<div class="logo">Tech<span>Inside</span></div>
-<div class="nav" id="navFilters"></div>
-<div class="search-box"><input type="text" placeholder="Buscar..." id="searchInput" oninput="handleSearch()"></div>
+</style></head><body>
+<div class="hv" id="hv">
+<div class="header"><div class="hi"><div class="logo">Tech<span>Inside</span></div><div class="si"><input type="text" placeholder="Buscar..." id="si" oninput="hS()"></div></div></div>
+<div class="tnav"><div class="tnav-i" id="nf"></div></div>
+<div class="top-grid"><div class="col-list"><h3>mais recente</h3><div id="lr"></div></div><div id="mf"></div><div class="col-list"><h3>análises</h3><div id="an"></div></div></div>
+<div class="st">notícias sobre criptomoedas</div>
+<div class="grid4" id="g4"></div>
+<div class="st">siga-nos nas redes sociais</div>
+<div class="grid5" id="g5"></div>
+<div class="st">perspectivas de mercado</div>
+<div class="grid4" id="g4b"></div>
+<div class="footer">© 2026 Tech Inside. Todos os direitos reservados.</div>
 </div>
-<div class="hero-section" id="heroSection"></div>
-<div class="mais-lidas"><div class="inner"><h2>🔥 Mais Lidas</h2><div class="mais-lidas-grid" id="maisLidas"></div></div></div>
-<div class="section-header"><h2>Notícias</h2></div>
-<div class="grid" id="newsGrid"></div>
-<div class="footer"><div class="footer-inner"><div><h4>Categorias</h4><a href="#">Bitcoin</a><a href="#">Ethereum</a><a href="#">DeFi</a><a href="#">NFT</a></div><div><h4>Seções</h4><a href="#">Últimas</a><a href="#">Análises</a><a href="#">Tutoriais</a></div><div><h4>Sobre</h4><a href="#">Quem somos</a><a href="#">Contato</a><a href="#">Termos</a></div><div><h4>Tech Inside</h4><p style="font-size:.75rem;color:#888">Portal de tecnologia e inovação digital.</p></div></div><div class="footer-bottom">© 2026 Tech Inside. Todos os direitos reservados.</div></div>
-</div>
-<div class="article-view" id="articleView"><span class="back" onclick="goHome()">← Voltar</span><div id="articleContent"></div></div>
-<script>
-const SUPA="https://vpvsrjkotstvjywhuacr.supabase.co",KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwdnNyamtvdHN0dmp5d2h1YWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzE2MzQsImV4cCI6MjA2MjgwNzYzNH0.BDh59N4okIoJB0aOheqp07lYLgd0A4y3Ho1H26xl2jw";
-let allNews=[],searchQuery='',currentFilter='';
-function parseTags(h){if(!h)return[];if(Array.isArray(h))return h;if(typeof h==='string')return h.split('#').filter(Boolean).map(t=>t.trim());return[]}
-async function init(){const r=await fetch(SUPA+'/rest/v1/noticiasgeral?status=eq.publicado&order=created_at.desc&limit=30',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});allNews=await r.json();
-document.getElementById('ticker').textContent=allNews.slice(0,5).map(n=>'⚡ '+n.titulo_noticia).join('   ');
-renderHome();handleHash()}
-function renderHome(){let news=getFiltered();
-if(news.length>0){const n=news[0];const sidebar=news.slice(1,5);
-document.getElementById('heroSection').innerHTML=`
-<a href="#/article/${n.slug}" class="hero-main"><img src="${n.capa_noticia||''}" onerror="this.style.background='#ddd'" alt=""><div class="overlay"><h1>${n.titulo_noticia||''}</h1><p>${(n.resumo_noticia||'').slice(0,120)}...</p></div></a>
-<div class="hero-sidebar">${sidebar.map(s=>{const t=parseTags(s.hashtags);return`<a href="#/article/${s.slug}" class="hero-sidebar-item"><img src="${s.capa_noticia||''}" onerror="this.style.background='#eee'" alt=""><div><span>${t[0]||'Tech'}</span><h3>${s.titulo_noticia||''}</h3></div></a>`}).join('')}</div>`;}
-document.getElementById('maisLidas').innerHTML=news.slice(0,5).map((n,i)=>`<a href="#/article/${n.slug}" class="mais-lidas-item"><div class="num">${String(i+1).padStart(2,'0')}</div><div><h3>${n.titulo_noticia||''}</h3></div></a>`).join('');
-document.getElementById('newsGrid').innerHTML=news.slice(5).map(n=>{const tags=parseTags(n.hashtags);return`<a href="#/article/${n.slug}" class="card"><img src="${n.capa_noticia||''}" onerror="this.style.background='#eee'" alt=""><div class="card-body"><span class="tag">${tags[0]||'Tech'}</span><h3>${n.titulo_noticia||''}</h3><p>${(n.resumo_noticia||'').slice(0,100)}</p><div class="meta">${n.created_at?new Date(n.created_at).toLocaleDateString('pt-BR',{day:'numeric',month:'short'}):''}</div></div></a>`}).join('');
-const cats=[...new Set(allNews.flatMap(n=>parseTags(n.hashtags).slice(0,2)))].filter(c=>c.length<15).slice(0,5);
-document.getElementById('navFilters').innerHTML=cats.map(c=>`<a href="#" onclick="event.preventDefault();setFilter('${c}')">${c}</a>`).join('')}
-function setFilter(f){currentFilter=currentFilter===f?'':f;renderHome()}
-function handleSearch(){searchQuery=document.getElementById('searchInput').value.toLowerCase();renderHome()}
-function getFiltered(){let f=allNews;if(currentFilter)f=f.filter(n=>parseTags(n.hashtags).includes(currentFilter));if(searchQuery)f=f.filter(n=>(n.titulo_noticia||'').toLowerCase().includes(searchQuery)||(n.resumo_noticia||'').toLowerCase().includes(searchQuery));return f}
-function showArticle(slug){const n=allNews.find(a=>a.slug===slug);if(!n)return;const tags=parseTags(n.hashtags);document.getElementById('articleContent').innerHTML=`<h1>${n.titulo_noticia||''}</h1><div class="meta">${n.autor||'Redação'} · ${n.created_at?new Date(n.created_at).toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'}):''}</div>${n.capa_noticia?`<img class="cover" src="${n.capa_noticia}" alt="">`:''}
-<div class="body">${(n.resumo_noticia||'').split('\n').map(p=>'<p>'+p+'</p>').join('')}</div><div class="tags">${tags.map(t=>'<span>#'+t+'</span>').join('')}</div>`;document.getElementById('homeView').classList.add('hidden');document.getElementById('articleView').classList.add('active');window.scrollTo(0,0)}
-function goHome(){document.getElementById('homeView').classList.remove('hidden');document.getElementById('articleView').classList.remove('active')}
-function handleHash(){const h=location.hash;if(h.startsWith('#/article/'))showArticle(h.replace('#/article/',''));else goHome()}
-window.addEventListener('hashchange',handleHash);init();
+<div class="av" id="av"><span class="back" onclick="gH()">← Voltar</span><div id="ac"></div></div>
+<script>const SUPA="https://vpvsrjkotstvjywhuacr.supabase.co",KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwdnNyamtvdHN0dmp5d2h1YWNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyMzE2MzQsImV4cCI6MjA2MjgwNzYzNH0.BDh59N4okIoJB0aOheqp07lYLgd0A4y3Ho1H26xl2jw";
+let allNews=[],sq='',cf='';
+function pT(h){if(!h)return[];if(Array.isArray(h))return h;if(typeof h==='string')return h.split('#').filter(Boolean).map(t=>t.trim());return[]}
+function fmtD(d){return d?new Date(d).toLocaleDateString('pt-BR',{day:'numeric',month:'short',year:'numeric'}):'';}
+function fmtDL(d){return d?new Date(d).toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'}):'';}
+async function init(){const r=await fetch(SUPA+'/rest/v1/noticiasgeral?status=eq.publicado&order=created_at.desc&limit=40',{headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});allNews=await r.json();render();hH()}
+function gF(){let f=allNews;if(cf)f=f.filter(n=>pT(n.hashtags).includes(cf));if(sq)f=f.filter(n=>(n.titulo_noticia||'').toLowerCase().includes(sq)||(n.resumo_noticia||'').toLowerCase().includes(sq));return f}
+function sF(f){cf=cf===f?'':f;render()}
+function hS(){sq=document.getElementById('si').value.toLowerCase();render()}
+function sA(slug){const n=allNews.find(a=>a.slug===slug);if(!n)return;const tags=pT(n.hashtags);
+document.getElementById('ac').innerHTML=`<h1>${n.titulo_noticia||''}</h1><div class="meta">${n.autor||'Redação'} · ${fmtDL(n.created_at)}</div>${n.capa_noticia?`<img class="cover" src="${n.capa_noticia}" alt="">`:''}
+<div class="body">${(n.resumo_noticia||'').split('\n').map(p=>'<p>'+p+'</p>').join('')}</div><div class="tags">${tags.map(t=>'<span>#'+t+'</span>').join('')}</div>`;
+document.getElementById('hv').classList.add('hidden');document.getElementById('av').classList.add('active');window.scrollTo(0,0)}
+function gH(){document.getElementById('hv').classList.remove('hidden');document.getElementById('av').classList.remove('active')}
+function hH(){const h=location.hash;if(h.startsWith('#/article/'))sA(h.replace('#/article/',''));else gH()}
+window.addEventListener('hashchange',hH);init();
+function render(){let n=gF();
+if(n.length>0){const h=n[0];
+document.getElementById('mf').innerHTML=`<a href="#/article/${h.slug}" class="col-feat"><img src="${h.capa_noticia||''}" onerror="this.style.background='#1a1a2e'" alt=""><div class="ov"><h2>${h.titulo_noticia||''}</h2><p>${(h.resumo_noticia||'').slice(0,120)}...</p></div></a>`;}
+document.getElementById('lr').innerHTML=n.slice(1,6).map(x=>`<a href="#/article/${x.slug}"><div class="tg">${pT(x.hashtags)[0]||'Tech'}</div>${x.titulo_noticia||''}</a>`).join('');
+document.getElementById('an').innerHTML=n.slice(6,11).map(x=>`<a href="#/article/${x.slug}">${x.titulo_noticia||''}</a>`).join('');
+document.getElementById('g4').innerHTML=n.slice(1,9).map(x=>`<a href="#/article/${x.slug}" class="gc"><img src="${x.capa_noticia||''}" onerror="this.style.background='#1a1a2e'" alt=""><div class="cb"><h3>${x.titulo_noticia||''}</h3><div class="mt">${fmtD(x.created_at)}</div></div></a>`).join('');
+document.getElementById('g5').innerHTML=n.slice(9,19).map(x=>`<a href="#/article/${x.slug}" class="g5c"><img src="${x.capa_noticia||''}" onerror="this.style.background='#1a1a2e'" alt=""><h4>${x.titulo_noticia||''}</h4></a>`).join('');
+document.getElementById('g4b').innerHTML=n.slice(19,27).map(x=>`<a href="#/article/${x.slug}" class="gc"><img src="${x.capa_noticia||''}" onerror="this.style.background='#1a1a2e'" alt=""><div class="cb"><h3>${x.titulo_noticia||''}</h3><div class="mt">${fmtD(x.created_at)}</div></div></a>`).join('');
+const cats=[...new Set(n.flatMap(x=>pT(x.hashtags).slice(0,2)))].filter(c=>c.length<15).slice(0,7);
+document.getElementById('nf').innerHTML=cats.map(c=>`<a href="#" onclick="event.preventDefault();sF('${c}')">${c}</a>`).join('')}
 </script></body></html>
